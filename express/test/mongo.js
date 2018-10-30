@@ -5,7 +5,7 @@ var expect = chai.expect
 var mongoose = require('mongoose')
 
 var config = require('../config')
-var Item = require('./models/item.test')
+var Item = require('../models/item')
 
 describe('mongoose', function() {
   var conn;

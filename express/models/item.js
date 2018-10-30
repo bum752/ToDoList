@@ -22,4 +22,5 @@ var itemSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('item', itemSchema)
+var model = (process.env.NODE_ENV !== 'test') ? 'item' : 'testitem'
+module.exports = mongoose.model(model, itemSchema)
