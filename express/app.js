@@ -1,0 +1,41 @@
+var config = require('./config')
+
+// Express and Middleware
+var express = require('express')
+var app = express()
+var bodyParser = require('body-parser')
+var logger = require('morgan');
+
+// Router
+var apiRouter = require('./routes/api');
+
+// MongoDB Connection
+var mongoose = require('mongoose')
+
+var mongodbUri = config.mongodb.uri
+var mongodbOptions = config.mongodb.options
+mongoose.connect(mongodbUri, mongodbOptions)
+
+var conn = mongoose.connection
+conn.on('error', function(error) {
+  throw error;
+})
+// conn.once('open', function() {
+//   console.log('Connected to mongodb')
+// })
+
+var port = process.env.PORT || 3000
+
+if (process.env.NODE_ENV === 'production') app.use(logger('common'))
+else if (process.env.NODE_ENV === 'development') app.use(loggger('dev'))
+
+// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
+app.use('/api/todo', apiRouter)
+
+app.listen(port, function() {
+  console.log('Express app running on port', port)
+})
+
+module.exports = app
