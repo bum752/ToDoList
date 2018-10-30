@@ -54,7 +54,7 @@ describe('api endpoint test', function() {
         if (err) throw err
 
         expect(res.body).to.be.a('object')
-        expect(res.body).to.have.property('success').to.be.true
+        // expect(res.body).to.have.property('success').to.be.true
         expect(res.body).to.have.property('item')
         expect(res.body.item).to.have.property('title').to.equal(item.title)
         expect(res.body.item).to.have.property('content').to.equal(item.content)
@@ -87,7 +87,7 @@ describe('api endpoint test', function() {
         if (err) throw err
 
         expect(res.body).to.be.a('object')
-        expect(res.body).to.have.property('success').to.equal(true)
+        // expect(res.body).to.have.property('success').to.equal(true)
         expect(res.body).to.have.property('item')
         expect(res.body.item).to.have.property('title').to.equal(item.title)
         expect(res.body.item).to.have.property('content').to.equal(item.content)
