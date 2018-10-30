@@ -38,7 +38,7 @@ describe('api endpoint test', function() {
   })
 
   describe('POST /api/todo/item', function() {
-    it('should respond {result: true, item: {_id, title, content, ...}}', function(done) {
+    it('should respond {_id, title, content, ...}', function(done) {
       this.timeout(5000)
 
       var item = {
@@ -55,18 +55,18 @@ describe('api endpoint test', function() {
 
         expect(res.body).to.be.a('object')
         // expect(res.body).to.have.property('success').to.be.true
-        expect(res.body).to.have.property('item')
-        expect(res.body.item).to.have.property('title').to.equal(item.title)
-        expect(res.body.item).to.have.property('content').to.equal(item.content)
-        expect(res.body.item).to.not.have.property('deadline')
-        expect(res.body.item).to.have.property('priority').to.equal(3)
-        expect(res.body.item).to.have.property('done').to.be.false
+        // expect(res.body).to.have.property('item')
+        expect(res.body).to.have.property('title').to.equal(item.title)
+        expect(res.body).to.have.property('content').to.equal(item.content)
+        expect(res.body).to.not.have.property('deadline')
+        expect(res.body).to.have.property('priority').to.equal(3)
+        expect(res.body).to.have.property('done').to.be.false
 
         done()
       })
     })
 
-    it('should respond {result: true, item: {..., deadline, priority, done}}', function(done) {
+    it('should respond {..., deadline, priority, done}', function(done) {
       this.timeout(5000)
 
       var deadline = new Date()
@@ -88,12 +88,12 @@ describe('api endpoint test', function() {
 
         expect(res.body).to.be.a('object')
         // expect(res.body).to.have.property('success').to.equal(true)
-        expect(res.body).to.have.property('item')
-        expect(res.body.item).to.have.property('title').to.equal(item.title)
-        expect(res.body.item).to.have.property('content').to.equal(item.content)
-        expect(res.body.item).to.have.property('deadline').to.exist
-        expect(res.body.item).to.have.property('priority').to.equal(item.priority)
-        expect(res.body.item).to.have.property('done').to.equal(item.done)
+        // expect(res.body).to.have.property('item')
+        expect(res.body).to.have.property('title').to.equal(item.title)
+        expect(res.body).to.have.property('content').to.equal(item.content)
+        expect(res.body).to.have.property('deadline').to.exist
+        expect(res.body).to.have.property('priority').to.equal(item.priority)
+        expect(res.body).to.have.property('done').to.equal(item.done)
 
         done()
       })
