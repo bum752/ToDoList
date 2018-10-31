@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test'
+
 var request = require('supertest')
 var chai = require('chai')
 var expect = chai.expect
@@ -96,6 +98,142 @@ describe('mongoose', function() {
       expect(doc).to.have.property('status').to.equal(data.status)
 
       docs.push(doc)
+      done()
+    })
+  })
+
+  it('save item (3)', function(done) {
+    var deadline = new Date()
+    deadline.setDate(deadline.getDate() + 7)
+
+    var data = {
+      title: 'TEST TITLE 3',
+      content: 'TEST CONTENT 3',
+      deadline: deadline,
+      priority: 4,
+      status: 0
+    }
+
+    var item = new Item(data)
+
+    item.save(function(err, doc) {
+      expect(doc).to.be.a('object')
+      expect(doc).to.have.property('title').to.equal(data.title)
+      expect(doc).to.have.property('content').to.equal(data.content)
+      expect(doc).to.have.property('deadline').to.exist
+      expect(doc).to.have.property('priority').to.equal(data.priority)
+      expect(doc).to.have.property('status').to.equal(data.status)
+
+      docs.push(doc)
+      done()
+    })
+  })
+
+  it('save item (4)', function(done) {
+    var deadline = new Date()
+    deadline.setDate(deadline.getDate() + 7)
+
+    var data = {
+      title: 'TEST TITLE 4',
+      content: 'TEST CONTENT 4',
+      deadline: deadline,
+      priority: 3,
+      status: 1
+    }
+
+    var item = new Item(data)
+
+    item.save(function(err, doc) {
+      expect(doc).to.be.a('object')
+      expect(doc).to.have.property('title').to.equal(data.title)
+      expect(doc).to.have.property('content').to.equal(data.content)
+      expect(doc).to.have.property('deadline').to.exist
+      expect(doc).to.have.property('priority').to.equal(data.priority)
+      expect(doc).to.have.property('status').to.equal(data.status)
+
+      docs.push(doc)
+      done()
+    })
+  })
+
+  it('save item (5)', function(done) {
+    var deadline = new Date()
+    deadline.setDate(deadline.getDate() + 7)
+
+    var data = {
+      title: 'TEST TITLE 5',
+      content: 'TEST CONTENT 5',
+      deadline: deadline,
+      priority: 3,
+      status: 0
+    }
+
+    var item = new Item(data)
+
+    item.save(function(err, doc) {
+      expect(doc).to.be.a('object')
+      expect(doc).to.have.property('title').to.equal(data.title)
+      expect(doc).to.have.property('content').to.equal(data.content)
+      expect(doc).to.have.property('deadline').to.exist
+      expect(doc).to.have.property('priority').to.equal(data.priority)
+      expect(doc).to.have.property('status').to.equal(data.status)
+
+      docs.push(doc)
+      done()
+    })
+  })
+
+  it('save item (6)', function(done) {
+    var deadline = new Date()
+    deadline.setDate(deadline.getDate() + 7)
+
+    var data = {
+      title: 'TEST TITLE 5',
+      content: 'TEST CONTENT 5',
+      deadline: deadline,
+      priority: 4,
+      status: 2
+    }
+
+    var item = new Item(data)
+
+    item.save(function(err, doc) {
+      expect(doc).to.be.a('object')
+      expect(doc).to.have.property('title').to.equal(data.title)
+      expect(doc).to.have.property('content').to.equal(data.content)
+      expect(doc).to.have.property('deadline').to.exist
+      expect(doc).to.have.property('priority').to.equal(data.priority)
+      expect(doc).to.have.property('status').to.equal(data.status)
+
+      docs.push(doc)
+      done()
+    })
+  })
+
+  it('aggregate', function(done) {
+    var agg = [
+      {
+        $group: {
+          _id: {
+            status: '$status',
+            priority: '$priority'
+          },
+          items: { $push: '$$ROOT' }
+        },
+      },
+      {
+        $sort: {
+          '_id.status': -1,
+          '_id.priority': 1,
+        }
+      }
+    ]
+
+    Item.aggregate(agg, function(err, docs) {
+      if (err) throw err
+
+      expect(docs).to.be.a('array')
+
       done()
     })
   })
