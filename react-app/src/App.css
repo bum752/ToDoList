@@ -9,7 +9,27 @@
   color: #000000 !important;
 }
 
+.collapsible-header {
+  display: block;
+}
+
 .collapsible-body {
   background-color: #F4F7F7 !important;
   color: #000000 !important;
+    padding: 1rem;
+}
+
+.collapsible-footer {
+  border-top: 1px solid !important;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.item-menu {
+  display: none;
+}
+
+.collapsible-header:hover .item-menu {
+  display: block;
+  float: right !important;
 }

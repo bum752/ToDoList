@@ -12,8 +12,18 @@ class Item extends React.Component {
   render() {
     return (
       <li>
-        <div className="collapsible-header">Title</div>
-        <div className="collapsible-body">Hello, World!</div>
+        <div className="collapsible-header">
+          Title
+          <div className="item-menu">
+            <i className="material-icons">remove</i>
+          </div>
+        </div>
+        <div className="collapsible-body">
+          Hello, World!
+          <div className="collapsible-footer">
+            <i className="material-icons">edit</i>
+          </div>
+        </div>
       </li>
     )
   }
