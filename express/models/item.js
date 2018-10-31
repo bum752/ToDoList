@@ -13,12 +13,15 @@ var itemSchema = new Schema({
   deadline: Date,
   priority: {
     type: Number,
-    default: 3,
-    max: 5
+    default: 2,
+    min: 0,
+    max: 4
   },
-  done: {
-    type: Boolean,
-    default: false
+  status: {
+    type: Number,
+    required: true,
+    min: 0,
+    max: 2
   }
 })
 
