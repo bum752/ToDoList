@@ -43,7 +43,8 @@ describe('api endpoint test', function() {
 
       var item = {
         title: 'TEST TITLE',
-        content: 'TEST CONTENT'
+        content: 'TEST CONTENT',
+        status: 0
       }
 
       request(app)
@@ -59,14 +60,14 @@ describe('api endpoint test', function() {
         expect(res.body).to.have.property('title').to.equal(item.title)
         expect(res.body).to.have.property('content').to.equal(item.content)
         expect(res.body).to.not.have.property('deadline')
-        expect(res.body).to.have.property('priority').to.equal(3)
-        expect(res.body).to.have.property('done').to.be.false
+        expect(res.body).to.have.property('priority').to.equal(2)
+        expect(res.body).to.have.property('status').to.equal(item.status)
 
         done()
       })
     })
 
-    it('should respond {..., deadline, priority, done}', function(done) {
+    it('should respond {..., deadline, priority, status}', function(done) {
       this.timeout(5000)
 
       var deadline = new Date()
@@ -75,8 +76,8 @@ describe('api endpoint test', function() {
         title: 'TEST TITLE',
         content: 'TEST CONTENT',
         deadline: deadline,
-        priority: 5,
-        done: true
+        priority: 4,
+        status: 2
       }
 
       request(app)
@@ -93,7 +94,7 @@ describe('api endpoint test', function() {
         expect(res.body).to.have.property('content').to.equal(item.content)
         expect(res.body).to.have.property('deadline').to.exist
         expect(res.body).to.have.property('priority').to.equal(item.priority)
-        expect(res.body).to.have.property('done').to.equal(item.done)
+        expect(res.body).to.have.property('status').to.equal(item.status)
 
         done()
       })
