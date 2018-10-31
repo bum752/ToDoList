@@ -54,7 +54,8 @@ describe('mongoose', function() {
   it('save item (1)', function(done) {
     var data = {
       title: 'TEST TITLE',
-      content: 'TEST CONTENT'
+      content: 'TEST CONTENT',
+      status: 0
     }
 
     var item = new Item(data)
@@ -64,8 +65,8 @@ describe('mongoose', function() {
       expect(doc).to.have.property('title').to.equal(data.title)
       expect(doc).to.have.property('content').to.equal(data.content)
       expect(doc).to.have.property('deadline').to.undefined
-      expect(doc).to.have.property('priority').to.equal(3)
-      expect(doc).to.have.property('done').to.be.false
+      expect(doc).to.have.property('priority').to.equal(2)
+      expect(doc).to.have.property('status').to.equal(data.status)
 
       docs.push(doc)
       done()
@@ -80,8 +81,8 @@ describe('mongoose', function() {
       title: 'TEST TITLE',
       content: 'TEST CONTENT',
       deadline: deadline,
-      priority: 5,
-      done: true
+      priority: 4,
+      status: 2
     }
 
     var item = new Item(data)
@@ -92,7 +93,7 @@ describe('mongoose', function() {
       expect(doc).to.have.property('content').to.equal(data.content)
       expect(doc).to.have.property('deadline').to.exist
       expect(doc).to.have.property('priority').to.equal(data.priority)
-      expect(doc).to.have.property('done').to.be.true
+      expect(doc).to.have.property('status').to.equal(data.status)
 
       docs.push(doc)
       done()
