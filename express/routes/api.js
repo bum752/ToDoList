@@ -16,7 +16,25 @@ router.get('/item/:_id', function(req, res) {
 })
 
 router.get('/items', function(req, res) {
-  Item.find(function(error, items) {
+  var agg = [
+    {
+      $group: {
+        _id: {
+          status: '$status',
+          priority: '$priority'
+        },
+        items: { $push: '$$ROOT' }
+      },
+    },
+    {
+      $sort: {
+        '_id.status': -1,
+        '_id.priority': 1,
+      }
+    }
+  ]
+
+  Item.aggregate(agg, function(error, items) {
     if (error) return res.status(500).send({error: error})
     res.json(items)
   })
