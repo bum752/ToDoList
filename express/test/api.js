@@ -60,7 +60,7 @@ describe('api endpoint test', function() {
         expect(res.body).to.have.property('title').to.equal(item.title)
         expect(res.body).to.have.property('content').to.equal(item.content)
         expect(res.body).to.not.have.property('deadline')
-        expect(res.body).to.have.property('priority').to.equal(2)
+        expect(res.body).to.have.property('priority').to.equal(0)
         expect(res.body).to.have.property('status').to.equal(item.status)
 
         done()

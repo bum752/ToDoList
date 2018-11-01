@@ -67,7 +67,7 @@ describe('mongoose', function() {
       expect(doc).to.have.property('title').to.equal(data.title)
       expect(doc).to.have.property('content').to.equal(data.content)
       expect(doc).to.have.property('deadline').to.undefined
-      expect(doc).to.have.property('priority').to.equal(2)
+      expect(doc).to.have.property('priority').to.equal(0)
       expect(doc).to.have.property('status').to.equal(data.status)
 
       docs.push(doc)
