@@ -13,9 +13,9 @@ var itemSchema = new Schema({
   deadline: Date,
   priority: {
     type: Number,
-    default: 2,
+    default: 0,
     min: 0,
-    max: 4
+    max: 5
   },
   status: {
     type: Number,
