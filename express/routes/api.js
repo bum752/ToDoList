@@ -57,7 +57,7 @@ router.put('/item', function(req, res) {
     doc.content = req.body.content
     doc.deadline = req.body.deadline
     doc.priority = req.body.priority
-    doc.done = req.body.done
+    doc.status = req.body.status
 
     doc.save(function(e, d) {
       if (e) return res.status(500).json({success: false, error: error})
