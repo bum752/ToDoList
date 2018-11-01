@@ -13,10 +13,12 @@ class Item extends React.Component {
     return (
       <li>
         <div className="collapsible-header">
-          { this.props.title }
-          <div className="item-menu">
+          <span className="truncate">
+            { this.props.title }
+          </span>
+          <button className="item-menu btn-floating btn-small waves-effect waves-light red">
             <i className="material-icons">remove</i>
-          </div>
+          </button>
         </div>
         <div className="collapsible-body">
           { this.props.content }

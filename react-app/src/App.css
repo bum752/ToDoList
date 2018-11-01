@@ -16,7 +16,10 @@
 .collapsible-body {
   background-color: #F4F7F7 !important;
   color: #000000 !important;
-    padding: 1rem;
+  padding: 1rem;
+  word-wrap: break-word;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
 }
 
 .collapsible-footer {

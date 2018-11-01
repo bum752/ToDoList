@@ -86,8 +86,9 @@ class App extends React.Component {
         <Navbar />
         <div className="container">
           <div className="center-align" style={{marginTop: '1em', marginBottom: '1em'}}>
-            <button className="btn-floating btn-large waves-effect waves-light red" onClick={this.openModal.bind(this)}>
-              <i className="material-icons">add</i>
+            <button className="btn waves-effect waves-light cyan accent-4" onClick={this.openModal.bind(this)}>
+              추가
+              <i className="material-icons right">add</i>
             </button>
           </div>
           <div className="row">
