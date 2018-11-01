@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactModal from 'react-responsive-modal'
 import axios from 'axios'
 
 import './App.css'
@@ -6,13 +7,15 @@ import config from './config'
 
 import Navbar from './components/Navbar'
 import Board from './components/Board'
+import Write from './components/Write'
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      items: [[], [], []]
+      items: [[], [], []],
+      modalIsOpen: false
     }
   }
 
@@ -29,7 +32,31 @@ class App extends React.Component {
           this.setState({ items })
         }
       })
+  }
 
+  openModal() {
+    this.setState({ modalIsOpen: true })
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false })
+  }
+
+  appendItem() {
+    this.setState({ items: this.state.items.map(x => x = []), modalIsOpen: false }, () => {
+      const { items } = this.state
+
+      axios.get(`${config.api}/items`)
+      .then(response => {
+        if (response.data) {
+          response.data.forEach(item => {
+            items[item._id.status][item._id.priority] = item.items
+          })
+
+          this.setState({ items })
+        }
+      })
+    })
   }
 
   render() {
@@ -49,8 +76,20 @@ class App extends React.Component {
 
     return (
       <div>
+        <ReactModal
+          open={this.state.modalIsOpen}
+          onClose={this.closeModal.bind(this)}
+          center
+        >
+          <Write close={this.appendItem.bind(this)} />
+        </ReactModal>
         <Navbar />
         <div className="container">
+          <div className="center-align" style={{marginTop: '1em', marginBottom: '1em'}}>
+            <button className="btn-floating btn-large waves-effect waves-light red" onClick={this.openModal.bind(this)}>
+              <i className="material-icons">add</i>
+            </button>
+          </div>
           <div className="row">
             { boards }
           </div>

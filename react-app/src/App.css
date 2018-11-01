@@ -33,3 +33,11 @@
   display: block;
   float: right !important;
 }
+
+.btn {
+  z-index: 0;
+}
+
+div[class^="styles_modal_"] {
+  width: 100%;
+}
