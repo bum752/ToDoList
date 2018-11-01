@@ -24,7 +24,7 @@ conn.on('error', function(error) {
 //   console.log('Connected to mongodb')
 // })
 
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3001
 
 if (process.env.NODE_ENV === 'production') app.use(logger('common'))
 else if (process.env.NODE_ENV === 'development') app.use(loggger('dev'))

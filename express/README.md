@@ -19,4 +19,4 @@
   $ npm start
   ```
   - port
-    - 3000 (default)
+    - 3001 (default)
