@@ -15,7 +15,8 @@ class App extends React.Component {
 
     this.state = {
       items: [[], [], []],
-      modalIsOpen: false
+      modalIsOpen: false,
+      tik: false
     }
   }
 
@@ -42,7 +43,7 @@ class App extends React.Component {
     this.setState({ modalIsOpen: false })
   }
 
-  appendItem() {
+  handleUpdate() {
     this.setState({ items: this.state.items.map(x => x = []), modalIsOpen: false }, () => {
       const { items } = this.state
 
@@ -69,7 +70,7 @@ class App extends React.Component {
 
       return (
         <div className="col s12 m4" key={i}>
-          <Board category={category(i)} items={item} />
+          <Board category={category(i)} items={item} handleUpdate={this.handleUpdate.bind(this)} />
         </div>
       )
     })
@@ -81,7 +82,7 @@ class App extends React.Component {
           onClose={this.closeModal.bind(this)}
           center
         >
-          <Write close={this.appendItem.bind(this)} />
+          <Write close={this.handleUpdate.bind(this)} />
         </ReactModal>
         <Navbar />
         <div className="container">

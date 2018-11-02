@@ -7,7 +7,7 @@ class Board extends React.Component {
     const itemList = this.props.items.reverse().map((item, i) => {
       const items = item.map((it, j) => {
         return (
-          <Item key={j} title={it.title} content={it.content}/>
+          <Item key={j} item={it} handleUpdate={this.props.handleUpdate} />
         )
       })
 
