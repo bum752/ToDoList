@@ -67,4 +67,12 @@ router.put('/item', function(req, res) {
   })
 })
 
+router.delete('/item/:_id', function(req, res) {
+  Item.deleteOne({_id: req.params._id}, function(error) {
+    if (error) return res.status(500).json({success: false, error: error})
+
+    res.status(204).end()
+  })
+})
+
 module.exports = router
