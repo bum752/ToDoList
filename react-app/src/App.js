@@ -44,7 +44,7 @@ class App extends React.Component {
   }
 
   handleUpdate() {
-    this.setState({ items: this.state.items.map(x => x = []), modalIsOpen: false }, () => {
+    this.setState({ items: this.state.items.map(x => x = []), modalIsOpen: false, editItem: null }, () => {
       const { items } = this.state
 
       axios.get(`${config.api}/items`)
