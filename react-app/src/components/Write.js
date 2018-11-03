@@ -46,13 +46,14 @@ class Write extends React.Component {
     const { M } = window
     const { state } = this
 
-    state.deadline = moment(state.daedline).toDate()
-    this.setState(initialState)
-    this.props.close()
+    if (state.deadline) state.deadline = moment(state.deadline).toDate()
+
 
     axios.post(`${config.api}/item`, state)
     .then(response => {
       M.toast({ html: '등록되었습니다.' })
+      this.setState(initialState)
+      this.props.close()
     })
     .catch(error => {
       M.toast({ html: '에러가 발생했습니다.' })

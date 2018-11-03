@@ -41,13 +41,18 @@ class Item extends React.Component {
         </div>
         <div className="collapsible-body">
           { this.props.item.content ? this.props.item.content : none }
-          <div className="collapsible-footer right-align">
-            <button className="btn-floating btn-small waves-effect waves-light blue">
-              <i className="material-icons">edit</i>
-            </button>
-            <button className="btn-floating btn-small waves-effect waves-light red" onClick={this.handleRemove.bind(this)}>
-              <i className="material-icons">delete</i>
-            </button>
+          <div className="collapsible-footer">
+            <div>
+              { this.props.item.deadline }
+            </div>
+            <div className="right-align">
+              <button className="btn-floating btn-small waves-effect waves-light blue">
+                <i className="material-icons">edit</i>
+              </button>
+              <button className="btn-floating btn-small waves-effect waves-light red" onClick={this.handleRemove.bind(this)}>
+                <i className="material-icons">delete</i>
+              </button>
+            </div>
           </div>
         </div>
       </li>

@@ -7,6 +7,8 @@
   border-radius: 1em;
   background-color: #A5DFF9 !important;
   color: #000000 !important;
+  display: flex;
+  flex-flow: column-reverse;
 }
 
 .collapsible-header {
@@ -28,19 +30,14 @@
   padding-top: 1rem;
 }
 
-.item-menu {
-  display: none;
-}
-
-.collapsible-header:hover .item-menu {
-  display: block;
-  float: right !important;
-}
-
 .btn {
   z-index: 0;
 }
 
 div[class^="styles_modal_"] {
   width: 100%;
+}
+
+.collapsible-stars {
+  background-color: #FFFFFF;
 }
