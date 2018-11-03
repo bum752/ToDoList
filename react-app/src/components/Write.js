@@ -20,7 +20,7 @@ class Write extends React.Component {
     super(props)
 
     const { item } = this.props
-    
+
     this.state =
       item ?
       {
@@ -65,8 +65,7 @@ class Write extends React.Component {
       axios.post(`${config.api}/item`, state)
       .then(response => {
         M.toast({ html: '등록되었습니다.' })
-        this.setState(initialState)
-        this.props.close()
+        this.setState(initialState, () => this.props.close())
       })
       .catch(error => {
         M.toast({ html: '에러가 발생했습니다.' })
@@ -76,8 +75,7 @@ class Write extends React.Component {
       axios.put(`${config.api}/item`, state)
       .then(response => {
         M.toast({ html: '수정되었습니다.' })
-        this.setState(initialState)
-        this.props.close()
+        this.setState(initialState, () => this.props.close())
       })
       .catch(error => {
         M.toast({ html: '에러가 발생했습니다.' })
