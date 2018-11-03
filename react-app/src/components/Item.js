@@ -36,7 +36,7 @@ class Item extends React.Component {
 
     return (
       <li>
-        <div className="collapsible-header">
+        <div className="collapsible-header" tooltip={this.props.item.title}>
           <span className="truncate">
             { this.props.item.title }
           </span>

@@ -41,3 +41,25 @@ div[class^="styles_modal_"] {
 .collapsible-stars {
   background-color: #FFFFFF;
 }
+
+[tooltip]:hover {
+  position: relative;
+}
+
+[tooltip]:hover:after {
+  content: attr(tooltip);
+
+  position: absolute;
+	bottom: 100%;
+	left: 0;
+  width: 100%;
+
+  background-color: rgba(0, 0, 0, 0.8);
+	color: #FFFFFF;
+	font-size: 0.8em;
+  word-wrap: break-word;
+  white-space: -moz-pre-wrap;
+  white-space: pre-wrap;
+
+	z-index: 9;
+}
