@@ -32,6 +32,8 @@ class Item extends React.Component {
       </span>
     )
 
+    const date = new Date(this.props.item.deadline)
+
     return (
       <li>
         <div className="collapsible-header">
@@ -43,7 +45,7 @@ class Item extends React.Component {
           { this.props.item.content ? this.props.item.content : none }
           <div className="collapsible-footer">
             <div>
-              { this.props.item.deadline }
+              { this.props.item.deadline ? `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 까지` : null }
             </div>
             <div className="right-align">
               <button className="btn-floating btn-small waves-effect waves-light blue">
