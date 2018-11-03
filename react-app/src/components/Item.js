@@ -63,12 +63,3 @@ class Item extends React.Component {
 }
 
 export default Item
-
-// <div className="card color-item">
-// <div className="card-content">
-// <span className="card-title black-text">TITLE</span>
-// <p className="black-text">
-// Hello, World!
-// </p>
-// </div>
-// </div>

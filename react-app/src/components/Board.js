@@ -32,15 +32,3 @@ class Board extends React.Component {
 }
 
 export default Board
-
-// <div className="row">
-//   <div classname="col s12">
-//     <Item />
-//   </div>
-//   <div classname="col s12">
-//     <Item />
-//   </div>
-//   <div classname="col s12">
-//     <Item />
-//   </div>
-// </div>

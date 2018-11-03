@@ -27,7 +27,7 @@ class Write extends React.Component {
         _id: item._id,
         title: item.title,
         content: item.content,
-        deadline: deadline,
+        deadline,
         priority: item.priority,
         status: item.status
       }
