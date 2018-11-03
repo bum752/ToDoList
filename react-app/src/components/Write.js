@@ -20,14 +20,14 @@ class Write extends React.Component {
     super(props)
 
     const { item } = this.props
-    const deadline = item.deadline ? moment(item.deadline) : null
+    
     this.state =
       item ?
       {
         _id: item._id,
         title: item.title,
         content: item.content,
-        deadline,
+        deadline: item.deadline ? moment(item.deadline) : null,
         priority: item.priority,
         status: item.status
       }
