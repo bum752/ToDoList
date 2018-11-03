@@ -16,7 +16,7 @@ class App extends React.Component {
     this.state = {
       items: [[], [], []],
       modalIsOpen: false,
-      tik: false
+      editItem: null
     }
   }
 
@@ -40,7 +40,7 @@ class App extends React.Component {
   }
 
   closeModal() {
-    this.setState({ modalIsOpen: false })
+    this.setState({ modalIsOpen: false, editItem: null })
   }
 
   handleUpdate() {
@@ -60,6 +60,10 @@ class App extends React.Component {
     })
   }
 
+  handleEdit(editItem) {
+    this.setState({ editItem }, () => this.openModal())
+  }
+
   render() {
     const boards = this.state.items.map((item, i) => {
       const category = (n) => {
@@ -70,7 +74,7 @@ class App extends React.Component {
 
       return (
         <div className="col s12 m4" key={i}>
-          <Board category={category(i)} items={item} handleUpdate={this.handleUpdate.bind(this)} />
+          <Board category={category(i)} items={item} handleUpdate={this.handleUpdate.bind(this)} handleEdit={this.handleEdit.bind(this)} />
         </div>
       )
     })
@@ -82,7 +86,7 @@ class App extends React.Component {
           onClose={this.closeModal.bind(this)}
           center
         >
-          <Write close={this.handleUpdate.bind(this)} />
+          <Write close={this.handleUpdate.bind(this)} item={this.state.editItem} />
         </ReactModal>
         <Navbar />
         <div className="container">

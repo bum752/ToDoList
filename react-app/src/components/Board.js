@@ -8,7 +8,7 @@ class Board extends React.Component {
     const itemList = this.props.items.map((item, i) => {
       const items = item.map((it, j) => {
         return (
-          <Item key={j} item={it} handleUpdate={this.props.handleUpdate} />
+          <Item key={j} item={it} handleUpdate={this.props.handleUpdate} handleEdit={this.props.handleEdit}/>
         )
       })
 

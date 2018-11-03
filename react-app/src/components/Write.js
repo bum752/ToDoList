@@ -19,7 +19,19 @@ class Write extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = initialState
+    const { item } = this.props
+    this.state =
+      item ?
+      {
+        _id: item._id,
+        title: item.title,
+        content: item.content,
+        deadline: moment(item.deadline),
+        priority: item.priority,
+        status: item.status
+      }
+      :
+      initialState
 
     this.handleInput = this.handleInput.bind(this)
   }
@@ -48,24 +60,36 @@ class Write extends React.Component {
 
     if (state.deadline) state.deadline = moment(state.deadline).toDate()
 
-
-    axios.post(`${config.api}/item`, state)
-    .then(response => {
-      M.toast({ html: '등록되었습니다.' })
-      this.setState(initialState)
-      this.props.close()
-    })
-    .catch(error => {
-      M.toast({ html: '에러가 발생했습니다.' })
-      console.error(error)
-    })
+    if (!this.props.item) {
+      axios.post(`${config.api}/item`, state)
+      .then(response => {
+        M.toast({ html: '등록되었습니다.' })
+        this.setState(initialState)
+        this.props.close()
+      })
+      .catch(error => {
+        M.toast({ html: '에러가 발생했습니다.' })
+        console.error(error)
+      })
+    } else {
+      axios.put(`${config.api}/item`, state)
+      .then(response => {
+        M.toast({ html: '수정되었습니다.' })
+        this.setState(initialState)
+        this.props.close()
+      })
+      .catch(error => {
+        M.toast({ html: '에러가 발생했습니다.' })
+        console.error(error)
+      })
+    }
   }
 
   render() {
     return (
       <div className="row">
         <div className="input-field s12">
-          <select name="status" defaultValue={0} onChange={this.handleInput}>
+          <select name="status" value={this.state.status} onChange={this.handleInput}>
             <option value={0}>To Do</option>
             <option value={1}>Doing</option>
             <option value={2}>Done</option>
@@ -93,7 +117,7 @@ class Write extends React.Component {
           onChange={this.handleRating.bind(this)} />
         <div className="center-align">
           <button className="btn waves-effect waves-light" onClick={this.handleSubmit.bind(this)}>
-            추가
+            { !this.props.item ? '추가' : '수정'}
             <i className="material-icons right">send</i>
           </button>
         </div>

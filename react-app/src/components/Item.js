@@ -48,7 +48,7 @@ class Item extends React.Component {
               { this.props.item.deadline ? `${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일 까지` : null }
             </div>
             <div className="right-align">
-              <button className="btn-floating btn-small waves-effect waves-light blue">
+              <button className="btn-floating btn-small waves-effect waves-light blue" onClick={() => this.props.handleEdit(this.props.item)}>
                 <i className="material-icons">edit</i>
               </button>
               <button className="btn-floating btn-small waves-effect waves-light red" onClick={this.handleRemove.bind(this)}>
