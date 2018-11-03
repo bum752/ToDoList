@@ -39,6 +39,12 @@ app.all('/*', function(req, res, next) {
 // app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+app.use(express.static('public'))
+
+app.get('/', function(req, res) {
+  res.sendFile('index.html')
+})
+
 app.use('/api/todo', apiRouter)
 
 app.listen(port, function() {
