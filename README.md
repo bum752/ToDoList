@@ -3,6 +3,12 @@
 - Node.js (express)
 - React.js
 - MongoDB ([MLab](https://mlab.com/))
+- AWS EC2
+- nginx
+
+```
+$ git clone https://github.com/bum752/ToDoList
+```
 
 ## [react-app](./react-app) (creat-react-app)
 
@@ -23,7 +29,7 @@
 
 - 복사
   ```
-  $ cp -r ./build/ ../express/public/
+  $ cp -r ./build/* ../express/public/
   ```
 
 ## [express](./express) [![Build Status](https://travis-ci.org/bum752/Oh-My-App.svg)](https://travis-ci.org/bum752/Oh-My-App)
@@ -59,4 +65,4 @@
   - port
     - 3001 (default)
 
-> 이 과정을 완료하셨나요? [로컬 서버](http://localhost:3001/) 또는 [AWS EC2 Instance](#)에 접속해보세요.
+> 이 과정을 완료하셨나요? [로컬 서버](http://localhost:3001/) 또는 [AWS EC2 Instance](http://ec2-13-209-73-62.ap-northeast-2.compute.amazonaws.com/)에 접속해보세요.
