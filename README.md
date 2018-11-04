@@ -6,7 +6,7 @@
 
 - Node.js 8 (express)
 - React.js (create-react-app v1.5.2)
-- **(!필수) MongoDB** ([MLab](https://mlab.com/))
+- **(!주의) MongoDB** ([MLab](https://mlab.com/))
   - 아래 방법으로 실행할 경우 localhost:27017 mongodb의 todolist 컬렉션을 사용합니다.
     - 변경을 원하시면 `<ToDoList>/express/config.json` 을 수정해주세요.
   - 데모 페이지는 MLab을 이용하고 있습니다.
