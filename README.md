@@ -59,9 +59,6 @@ $ git clone https://github.com/bum752/ToDoList
 
 - 테스트
   ```
-  $ npm test ./test/mongo.js # mongoose
-  $ npm test ./test/api.js # api
-
   $ npm test
   ```
 

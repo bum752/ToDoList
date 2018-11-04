@@ -8,9 +8,6 @@
 
 - 테스트
   ```
-  $ npm test ./test/mongo.js # mongoose
-  $ npm test ./test/api.js # api
-
   $ npm test
   ```
 
