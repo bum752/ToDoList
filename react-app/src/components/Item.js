@@ -33,6 +33,21 @@ class Item extends React.Component {
     )
 
     const date = new Date(this.props.item.deadline)
+    const dday = (date) => {
+      if (date) {
+        const deadline = new Date(date)
+        const now = new Date()
+        const dday = Math.floor((now.getTime() - deadline.getTime()) / (1000 * 60 * 60 * 24))
+
+        if (dday > 0) return (<span className="badge black white-text">만료</span>)
+        else if (dday === 0) return (<span className="badge red blink white-text">오늘</span>)
+        else if (dday >= -7) return (<span className="badge red white-text">D{dday}</span>)
+        else if (dday >= -14) return (<span className="badge blue white-text">D{dday}</span>)
+        else return (<span className="badge green white-text">D{dday}</span>)
+      } else {
+        return null
+      }
+    }
 
     return (
       <li>
@@ -40,6 +55,7 @@ class Item extends React.Component {
           <span className="truncate">
             { this.props.item.title }
           </span>
+          { this.props.item.status !== 2 ? dday(this.props.item.deadline) : null }
         </div>
         <div className="collapsible-body">
           { this.props.item.content ? this.props.item.content : none }

@@ -12,7 +12,7 @@
 }
 
 .collapsible-header {
-  display: block;
+  display: flex;
 }
 
 .collapsible-body {
@@ -62,4 +62,12 @@ div[class^="styles_modal_"] {
   white-space: pre-wrap;
 
 	z-index: 9;
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
 }
