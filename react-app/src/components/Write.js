@@ -115,7 +115,7 @@ class Write extends React.Component {
           value={this.state.priority}
           onChange={this.handleRating.bind(this)} />
         <div className="center-align">
-          <button className="btn waves-effect waves-light" onClick={this.handleSubmit.bind(this)}>
+          <button className="btn waves-effect waves-light" disabled={!this.state.title} onClick={this.handleSubmit.bind(this)}>
             { !this.props.item ? '추가' : '수정'}
             <i className="material-icons right">send</i>
           </button>
