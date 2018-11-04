@@ -13,8 +13,12 @@ class Item extends React.Component {
   }
 
   handleRemove() {
-    const { M } = window
-    axios.delete(`${config.api}/item/${this.props.item._id}`)
+    const { M, confirm } = window
+
+    const confirmed = confirm('정말 삭제하시겠습니까?')
+
+    if (confirmed){
+      axios.delete(`${config.api}/item/${this.props.item._id}`)
       .then(response => {
         this.props.handleUpdate()
         M.toast({ html: '삭제되었습니다.' })
@@ -23,6 +27,7 @@ class Item extends React.Component {
         M.toast({ html: '에러가 발생했습니다.' })
         console.error(error)
       })
+    }
   }
 
   render() {
