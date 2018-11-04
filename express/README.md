@@ -1,5 +1,5 @@
 # To Do List
-[![Build Status](https://travis-ci.org/bum752/Oh-My-App.svg)](https://travis-ci.org/bum752/Oh-My-App)
+[![Build Status](https://travis-ci.org/bum752/ToDoList.svg)](https://travis-ci.org/bum752/ToDoList)
 
 - 의존성 설치
   ```
