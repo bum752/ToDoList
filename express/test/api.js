@@ -7,6 +7,21 @@ var expect = chai.expect
 var app = require('../app')
 
 describe('api endpoint test', function() {
+
+  var items = []
+
+  after(function(done) {
+    request(app)
+    .get('/api/todo/items')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) throw err
+
+      expect(res.body).to.be.an('array').lengthOf(items.length - 1)
+      done()
+    })
+  })
+
   describe('GET /api', function() {
     it('should respond "Hello World"', function(done) {
       request(app)
@@ -55,13 +70,13 @@ describe('api endpoint test', function() {
         if (err) throw err
 
         expect(res.body).to.be.a('object')
-        // expect(res.body).to.have.property('success').to.be.true
-        // expect(res.body).to.have.property('item')
         expect(res.body).to.have.property('title').to.equal(item.title)
         expect(res.body).to.have.property('content').to.equal(item.content)
         expect(res.body).to.not.have.property('deadline')
         expect(res.body).to.have.property('priority').to.equal(0)
         expect(res.body).to.have.property('status').to.equal(item.status)
+
+        items.push(res.body)
 
         done()
       })
@@ -88,17 +103,58 @@ describe('api endpoint test', function() {
         if (err) throw err
 
         expect(res.body).to.be.a('object')
-        // expect(res.body).to.have.property('success').to.equal(true)
-        // expect(res.body).to.have.property('item')
         expect(res.body).to.have.property('title').to.equal(item.title)
         expect(res.body).to.have.property('content').to.equal(item.content)
         expect(res.body).to.have.property('deadline').to.exist
         expect(res.body).to.have.property('priority').to.equal(item.priority)
         expect(res.body).to.have.property('status').to.equal(item.status)
 
+        items.push(res.body)
+
         done()
       })
     })
   })
 
+  describe('PUT /api/todo/item', function() {
+    it('should respond { ... }', function(done) {
+      this.timeout(5000)
+
+      var item = items[1]
+      item.title = 'UPDATED TITLE'
+      item.content = 'UPDATED CONTENT'
+
+      request(app)
+        .put('/api/todo/item')
+        .send(item)
+        .expect(200)
+        .end(function(err, res) {
+          if (err) throw err
+
+          expect(res.body).to.be.a('object')
+          expect(res.body).to.have.property('_id').to.equal(item._id)
+          expect(res.body).to.have.property('title').to.equal(item.title)
+          expect(res.body).to.have.property('content').to.equal(item.content)
+          expect(res.body).to.have.property('deadline').to.equal(item.deadline)
+          expect(res.body).to.have.property('priority').to.equal(item.priority)
+          expect(res.body).to.have.property('status').to.equal(item.status)
+
+          done()
+        })
+    })
+  })
+
+  describe('DELETE /api/todo/item', function() {
+    it('should respond 204', function(done) {
+      this.timeout(5000)
+
+      request(app)
+        .delete('/api/todo/item/' + items[1]._id)
+        .expect(204)
+        .end(function(err, res) {
+          if (err) throw err
+          done()
+        })
+    })
+  })
 })
