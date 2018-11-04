@@ -10,6 +10,21 @@ describe('api endpoint test', function() {
 
   var items = []
 
+  before(function(done) {
+    request(app)
+    .get('/api/todo/items')
+    .expect(200)
+    .end(function(err, res) {
+      if (err) throw err
+
+      expect(res.body).to.be.an('array')
+      res.body.map(function(category) {
+        category.items.map(function(item) { items.push(item) })
+      })
+      done()
+    })
+  })
+
   after(function(done) {
     request(app)
     .get('/api/todo/items')
@@ -17,7 +32,12 @@ describe('api endpoint test', function() {
     .end(function(err, res) {
       if (err) throw err
 
-      expect(res.body).to.be.an('array').lengthOf(items.length - 1)
+      var count = 0
+      res.body.map(function(category) {
+        category.items.map(function() { count++ })
+      })
+      
+      expect(count).to.equal(items.length - 1)
       done()
     })
   })
