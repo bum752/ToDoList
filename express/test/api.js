@@ -36,7 +36,7 @@ describe('api endpoint test', function() {
       res.body.map(function(category) {
         category.items.map(function() { count++ })
       })
-      
+
       expect(count).to.equal(items.length - 1)
       done()
     })
@@ -85,7 +85,7 @@ describe('api endpoint test', function() {
       request(app)
       .post('/api/todo/item')
       .send(item)
-      .expect(200)
+      .expect(201)
       .end(function(err, res) {
         if (err) throw err
 
@@ -118,7 +118,7 @@ describe('api endpoint test', function() {
       request(app)
       .post('/api/todo/item')
       .send(item)
-      .expect(200)
+      .expect(201)
       .end(function(err, res) {
         if (err) throw err
 
@@ -147,7 +147,7 @@ describe('api endpoint test', function() {
       request(app)
         .put('/api/todo/item')
         .send(item)
-        .expect(200)
+        .expect(201)
         .end(function(err, res) {
           if (err) throw err
 
