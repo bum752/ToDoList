@@ -69,4 +69,18 @@ $ git clone https://github.com/bum752/ToDoList
   - port
     - 3001 (default)
 
-> 이 과정을 완료하셨나요? [로컬 서버](http://localhost:3001/) 또는 [AWS EC2 Instance](http://ec2-13-209-73-62.ap-northeast-2.compute.amazonaws.com/)에 접속해보세요.
+## 실행
+
+> 위의 과정을 완료하셨나요? [로컬 서버](http://localhost:3001/) 또는 [AWS EC2 Instance](http://ec2-13-209-73-62.ap-northeast-2.compute.amazonaws.com/)에 접속해보세요.
+
+- [로컬 서버](http://localhost:3001/)
+- [AWS EC2 Instance](http://ec2-13-209-73-62.ap-northeast-2.compute.amazonaws.com/)
+
+## API Documentation
+
+`/api-docs`에서 API 문서 열람은 물론 실행이 가능합니다!
+
+- [로컬 서버](http://localhost:3001/api-docs)
+- [AWS EC2 Instance](http://ec2-13-209-73-62.ap-northeast-2.compute.amazonaws.com/api-docs)
+
+![image](https://user-images.githubusercontent.com/20104232/47980062-43029c80-e109-11e8-985b-c878ec1c85b1.png)
