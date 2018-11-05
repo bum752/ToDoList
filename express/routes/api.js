@@ -7,14 +7,6 @@ router.get('/', function(req, res) {
   res.send('Hello World')
 })
 
-router.get('/item/:_id', function(req, res) {
-  Item.findById(req.params._id, function(error, doc) {
-    if (error) return res.status(500).json({error: error})
-
-    res.json(doc)
-  })
-})
-
 router.get('/items', function(req, res) {
   var agg = [
     {
@@ -45,7 +37,7 @@ router.post('/item', function(req, res) {
 
   item.save(function(error) {
     if (error) return res.status(500).json({error: error})
-    res.json(item)
+    res.status(201).json(item)
   })
 })
 
@@ -62,7 +54,7 @@ router.put('/item', function(req, res) {
     doc.save(function(e, d) {
       if (e) return res.status(500).json({success: false, error: error})
 
-      res.json(d)
+      res.status(201).json(d)
     })
   })
 })
