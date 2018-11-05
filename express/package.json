@@ -21,6 +21,8 @@
     "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.5",
-    "supertest": "^3.3.0"
+    "supertest": "^3.3.0",
+    "swagger-ui-express": "^4.0.1",
+    "yamljs": "^0.3.0"
   }
 }

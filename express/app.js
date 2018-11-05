@@ -6,8 +6,13 @@ var app = express()
 var bodyParser = require('body-parser')
 var logger = require('morgan');
 
+// swagger
+var swaggerUi = require('swagger-ui-express')
+var YAML = require('yamljs')
+var swaggerDocument = YAML.load('./swagger/swagger.yaml')
+
 // Router
-var apiRouter = require('./routes/api');
+var apiRouter = require('./routes/api')
 
 // MongoDB Connection
 var mongoose = require('mongoose')
@@ -45,6 +50,7 @@ app.get('/', function(req, res) {
   res.sendFile('index.html')
 })
 
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('/api/todo', apiRouter)
 
 app.listen(port, function() {

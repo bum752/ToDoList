@@ -1,0 +1,146 @@
+swagger: "2.0"
+info:
+  title: 'To Do List API Documentation'
+  version: '1.0.0'
+  description: 'Swagger로 작성된 To Do List API 문서입니다. API 명세 열람은 물론 실행도 해보세요!'
+tags:
+  - name: 'To Do Item'
+    description: 'To Do List 아이템 API'
+basePath: '/api/todo'
+schemes:
+  - 'http'
+paths:
+  /items:
+    get:
+      tags:
+        - 'To Do Item'
+      summary: '아이템 조회'
+      description: '아이템 목록을 조회합니다.'
+      consumes: 'application.json'
+      produces: 'application.json'
+      responses:
+        200:
+          description: '조회 성공'
+          schema:
+            type: 'array'
+            items:
+              $ref: '#/definition/Items'
+        500:
+          description: '내부 에러'
+  /item:
+    post:
+      tags:
+        - 'To Do Item'
+      summary: '아이템 추가'
+      description: '아이템을 추가합니다.'
+      consumes: 'application.json'
+      produces: 'application.json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: '추가할 아이템의 데이터'
+          schema:
+            $ref: '#/definition/postItem'
+          required: true
+      responses:
+        201:
+          description: '추가 성공'
+          schema:
+            $ref: '#/definition/Item'
+        500:
+          description: '내부 에러'
+    put:
+      tags:
+        - 'To Do Item'
+      summary: '아이템 수정'
+      description: '아이템을 수정합니다.'
+      consumes: 'application.json'
+      produces: 'application.json'
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: '수정할 아이템의 데이터'
+          schema:
+            $ref: '#/definition/Item'
+          required: true
+      responses:
+        201:
+          description: '수정 성공'
+          schema:
+            $ref: '#/definition/Item'
+        500:
+          description: '내부 에러'
+  /item/{_id}:
+    delete:
+      tags:
+        - 'To Do Item'
+      summary: '아이템 삭제'
+      description: '아이템을 삭제합니다.'
+      parameters:
+        - in: 'path'
+          name: '_id'
+          description: '아이템의 아이디'
+          type: 'string'
+          required: true
+      responses:
+        204:
+          description: '삭제 성공'
+        500:
+          description: '내부 에러'
+definition:
+  Item:
+    type: 'object'
+    properties:
+      _id:
+        type: 'string'
+      priority:
+        type: 'integer'
+      title:
+        type: 'string'
+      content:
+        type: 'string'
+      deadline:
+        type: 'string'
+        format: 'date-time'
+      status:
+        type: 'integer'
+      __v:
+        type: 'integer'
+  Items:
+    type: 'object'
+    properties:
+      _id:
+        type: 'object'
+        properties:
+          status:
+            type: 'integer'
+          priority:
+            type: 'integer'
+      items:
+        $ref: '#/definition/Item'
+  postItem:
+    type: 'object'
+    required:
+    - 'title'
+    - 'status'
+    properties:
+      status:
+        type: 'integer'
+        minimum: 0
+        maximum: 2
+        example: 0
+      title:
+        type: 'string'
+        example: '제목'
+      content:
+        type: 'string'
+        example: '내용'
+      deadline:
+        type: 'string'
+        format: 'date-time'
+        example: null
+      priority:
+        type: 'integer'
+        minimum: 0
+        maximum: 5
+        example: 0
